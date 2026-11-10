@@ -68,6 +68,7 @@ export class M3 {
     }
 
     static rotation(angleRadians: number): Mat3 {
+        
         return [
             1,  0,  0,
             0,  1,  0,
