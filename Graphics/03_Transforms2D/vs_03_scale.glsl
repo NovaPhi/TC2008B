@@ -27,7 +27,8 @@ void main() {
     // TODO:
     vec2 scaledPosition = a_position * u_scale;
 
-    vec2 rotatedPosition = vec2( 
+    // Apply rotation
+    vec2 rotatedPosition = vec2(
         scaledPosition.x * u_rotation.x - scaledPosition.y * u_rotation.y,
         scaledPosition.y * u_rotation.x + scaledPosition.x * u_rotation.y
     );
