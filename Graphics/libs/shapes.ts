@@ -96,18 +96,63 @@ function smiley(radius: number) : twgl.Arrays {
     // using the radius and an angle. Then convert them to polar coordinates.
 
     // Sample data for a single yellow triangle. Replace with your values.
-    positionData.push(0, 100);
-    positionData.push(-120, -100);
-    positionData.push(120, -100);
-    colorData.push(0.9, 0.8, 0, 1);
-    colorData.push(0.9, 0.8, 0, 1);
-    colorData.push(0.9, 0.8, 0, 1);
+     const yellow = [0.9, 0.8, 0, 1];
+     const black = [0,0,0, 1];
+     const white = [1,1,1,1];
+     const r = radius;
+     const sides = 40;
 
-    indexData.push(0, 2, 1);
+     positionData.push(0,0);
+     colorData.push(...yellow)
 
+     for(let i =0; i < sides; i++){
+        const angle = (i/sides) * 2 * Math.PI;
+        const x = radius * Math.cos(angle);
+        const y = radius * Math.sin(angle);
+        positionData.push(x,y);
+        colorData.push(...yellow)
+     }
 
+     for(let i=1; i<=sides; i++){
+        const next = (i%sides) + 1;
+        indexData.push(0, i, next);
+     }
 
-
+     // Lente izquierdo
+     positionData.push(-0.75 * r,  0.40 * r);  // 41: top left
+     positionData.push(-0.08 * r,  0.40 * r);  // 42: top right
+     positionData.push(-0.15 * r,  0.00 * r);  // 43: bottom right
+     positionData.push(-0.70 * r,  0.00 * r);  // 44: bottom left
+     colorData.push(...black, ...black, ...black, ...black);
+     indexData.push(41, 42, 43);
+     indexData.push(41, 43, 44);
+ 
+     // lente derecho
+     positionData.push( 0.08 * r,  0.40 * r);  // 45: top left
+     positionData.push( 0.75 * r,  0.40 * r);  // 46: top right
+     positionData.push( 0.70 * r,  0.00 * r);  // 47: bottom right
+     positionData.push( 0.15 * r,  0.00 * r);  // 48: bottom left
+     colorData.push(...black, ...black, ...black, ...black);
+     indexData.push(45, 46, 47);
+     indexData.push(45, 47, 48);
+     
+     // puente de los lentes
+     positionData.push(-0.10 * r,  0.36 * r);  // 49
+     positionData.push( 0.10 * r,  0.36 * r);  // 50
+     positionData.push( 0.10 * r,  0.28 * r);  // 51
+     positionData.push(-0.10 * r,  0.28 * r);  // 52
+     colorData.push(...black, ...black, ...black, ...black);
+     indexData.push(49, 50, 51);
+     indexData.push(49, 51, 52);
+     
+     // Boca    
+     positionData.push(-0.40 * r, -0.38 * r);  // 53
+     positionData.push( 0.40 * r, -0.38 * r);  // 54
+     positionData.push( 0.40 * r, -0.44 * r);  // 55
+     positionData.push(-0.40 * r, -0.44 * r);  // 56
+     colorData.push(...black, ...black, ...black, ...black);
+     indexData.push(53, 54, 55);
+     indexData.push(53, 55, 56);
 
     // Build the final object with the arrays for positions, colors, and indices
     const arrays: twgl.Arrays = {

@@ -65,10 +65,10 @@ class RotationScene extends Scene {
         // TODO: Create the matrices necessary
 
 
-
         // Create a composite transform matrix
         let modelTransforms: Mat3 = M3.identity();
         // TODO: Multiply the matrices in the correct order to obtain the required results
+        // multiplicar matrices * 
 
 
 
